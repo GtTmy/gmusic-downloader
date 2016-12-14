@@ -1,2 +1,5 @@
 # python env
 env/
+
+# private files
+mytest.py
