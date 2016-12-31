@@ -2,3 +2,5 @@
 env/
 
 # private files
+*.json
+*.pickle
