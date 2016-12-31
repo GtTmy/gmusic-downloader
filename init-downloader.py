@@ -39,22 +39,31 @@ num_tasks = len(tasks)
 for i, el in enumerate(tasks):
     print("processing...%d/%d" % (i+1, num_tasks))
     song_info = music_dict[el]
+    
     # artist name
-    if song_info["artist"] == "":
-        artist = "undefined"
+    if song_info["album_artist"] == "":
+        if song_info["artist"] == "":
+            artist = "undefined"
+        else:
+            artist = song_info["artist"]
     else:
-        artist = song_info["artist"]
+        artist = song_info["album_artist"]
+    artist = artist.replace("/", "_")
 
     # album name
     if song_info["album"] == "":
         album = "undefined"
     else:
         album = song_info["album"]
+    album = album.replace("/", "_")
 
     # gen folder
     os.makedirs("%s/%s/%s" % (music_root, artist, album), exist_ok=True)
+    
     try:
         filename, audio_bytes = mm.download_song(el)
+        filename = filename.replace("/", "_") # /は削除
+
         target = "%s/%s/%s/%s" % (music_root, artist, album, filename)
         print("  save %s" % target)
         with open(target, "wb") as f:
