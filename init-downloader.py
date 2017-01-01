@@ -74,7 +74,7 @@ if __name__ == '__main__':
         
         try:
             filename, audio_bytes = mm.download_song(el)
-            filename = filename.replace("/", "_") # /は削除
+            filename = trim_name(filename)
 
             target = "%s/%s/%s/%s" % (music_root, artist, album, filename)
             print("  save %s" % target)
