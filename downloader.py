@@ -74,7 +74,8 @@ if __name__ == '__main__':
         
         try:
             filename, audio_bytes = mm.download_song(el)
-            filename = trim_name(filename)
+            base, ext = os.path.splitext(filename)
+            filename = trim_name(base) + ext
 
             target = "%s/%s/%s/%s" % (music_root, artist, album, filename)
             print("  save %s" % target)
