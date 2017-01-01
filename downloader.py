@@ -1,13 +1,11 @@
+#!/usr/bin/env python3
 from gmusicapi import Musicmanager
 import sys
 import os
 import pickle
+import configparser
 import json # for test
 
-
-# settings
-pickle_filename = "downloaded.pickle"
-music_root = "./test"
 
 def trim_name(name):
     """ replace "/" and "." to "_"
@@ -20,6 +18,12 @@ def trim_name(name):
     return tmp
 
 if __name__ == '__main__':
+
+    # load settings
+    inifile = configparser.SafeConfigParser()
+    inifile.read("./settings.ini")
+    pickle_filename = inifile.get("settings", "picklefile")
+    music_root = inifile.get("settings", "musicroot")
         
     # # login
     mm = Musicmanager()

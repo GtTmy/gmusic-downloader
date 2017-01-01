@@ -4,3 +4,4 @@ env/
 # private files
 *.json
 *.pickle
+*.ini
