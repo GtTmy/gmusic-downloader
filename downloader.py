@@ -11,8 +11,11 @@ def trim_name(name):
     """ replace "/" and "." to "_"
     if name length is more than 30, it is shorten to 30.
     """
-    tmp = name.replace("/", "_")
-    tmp = tmp.replace(".", "_")
+    illigal_char = ("/",".",":","<",">",";","*","?","\"","|",",","*")
+    tmp = name
+    for el in illigal_char:
+        tmp = tmp.replace(el, "_")
+
     if len(tmp) > 30:
         tmp = tmp[:30]
     return tmp
@@ -24,7 +27,7 @@ if __name__ == '__main__':
     inifile.read("./settings.ini")
     pickle_filename = inifile.get("settings", "picklefile")
     music_root = inifile.get("settings", "musicroot")
-        
+
     # # login
     mm = Musicmanager()
     # mm.perform_oauth() # once
